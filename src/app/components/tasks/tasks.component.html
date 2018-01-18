@@ -1,7 +1,8 @@
 <div *ngIf="tasks?.length > 0;else noTasks">
+  <button class="btn green btn-large" (click)="generatePDF()">Generar PDF</button>
   <ul *ngFor="let task of tasks" class="collection">
     <li class="collection-item" (dblclick)="deleteTask($event, task)">
-      <strong>{{ task.title }}</strong> : {{ task.description }} 
+      <strong>{{ task.title }}</strong> : {{ task.transcription }} 
       <a href="#" class="secondary-content">
         <i (click)="deleteTask($event, task)" class="fa fa-trash"></i>
         <i (click)="editTask($event, task)" class="fa fa-pencil"></i>
@@ -9,18 +10,40 @@
       <div *ngIf="editState && taskToEdit.id === task.id">
         <form (ngSubmit)="updateTask(task)">
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field">
               <input 
                 type="text" name="title"
-                placeholder="Edit Title" [(ngModel)]="task.title">
+                placeholder="Editar palabra" [(ngModel)]="task.title">
             </div>
-            <div class="input-field col s6">
+            <div class="input-field">
                 <input 
-                  type="text" name="description"
-                  placeholder="Edit Description" [(ngModel)]="task.description">
+                  type="text" name="transcription"
+                  placeholder="Editar transcripción" [(ngModel)]="task.transcription">
+              </div>
+            <div class="input-field">
+                <input 
+                  type="text" name="definition"
+                  placeholder="Edita descripción" [(ngModel)]="task.definition">
             </div>
-            <input type="submit" class="btn" value="Update Task">
-            <button class="btn red" (click)="deleteTask($event, task)">Delete Task</button>
+            <div class="input-field">
+                <input 
+                  type="text" name="sentence"
+                  placeholder="Edita oración" [(ngModel)]="task.sentence">
+            </div>
+            <div class="input-field">
+                <div class="file-field input-field">
+                    <div class="btn light-green btn-large">
+                      <span>Imagen</span>
+                      <input type="file" accept="image/*" (change)="changeListener($event)">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text">
+                    </div>
+                    <img src="{{taskToEdit.image}}" />
+                </div>
+            </div>
+            <input type="submit" class="btn" value="Actualizar palabra">
+            <button class="btn red" (click)="deleteTask($event, task)">Eliminar palabra</button>
           </div>
         </form>
       </div>
@@ -30,5 +53,5 @@
 </div>
 
 <ng-template #noTasks>
-  <h5>There is not Tasks yet.</h5>
+  <h5>No hay palabras para mostrar.</h5>
 </ng-template>

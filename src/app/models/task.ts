@@ -1,6 +1,9 @@
 export interface Task {
     id?: string;
     title?: string;
-    description?: string;
+    transcription?: string;
+    definition?: string;
+    sentence?: string;
+    image?: string;
   }
   

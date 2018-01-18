@@ -12,7 +12,10 @@ import { Task } from '../../models/task';
 export class AddTaskComponent implements OnInit {
   task: Task = {
    title: '',
-   description: '' 
+   transcription: '',
+   definition: '',
+   sentence: '',
+   image: ''
   };
   constructor(private taskService: TaskService) { }
 
@@ -20,11 +23,27 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.task.title != '' && this.task.description != '') {
+    if(this.task.title != '' && this.task.transcription != '' && this.task.definition != '' && this.task.sentence != '' && this.task.image != '') {
       this.taskService.addTask(this.task);
       this.task.title = '';
-      this.task.description = '';
+      this.task.transcription = '';
+      this.task.definition = '';
+      this.task.sentence = '';
+      this.task.image = '';
     }
   }
 
+  changeListener($event) : void {
+    this.readThis($event.target);
+  }
+  
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+  
+    myReader.onloadend = (e) => {
+      this.task.image = myReader.result;
+    }
+    myReader.readAsDataURL(file);
+  }
 }

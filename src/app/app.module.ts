@@ -14,6 +14,8 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
 
 import { FormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase, 'angularfs'),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [
     TaskService

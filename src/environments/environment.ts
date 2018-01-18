@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAUyp2y6N-ZR8Uvg-uol_MdjTDiNF2Y9VM",
-    authDomain: "angular-fs-7dc2f.firebaseapp.com",
-    databaseURL: "https://angular-fs-7dc2f.firebaseio.com",
-    projectId: "angular-fs-7dc2f",
-    storageBucket: "angular-fs-7dc2f.appspot.com",
-    messagingSenderId: "139425124194"
+    apiKey: "AIzaSyCJCkj1w2TAkvkdcZ0a3t-m7VI9YcF6wvY",
+    authDomain: "pictionary-generator.firebaseapp.com",
+    databaseURL: "https://pictionary-generator.firebaseio.com",
+    projectId: "pictionary-generator",
+    storageBucket: "",
+    messagingSenderId: "255186121875"
   }
 };
