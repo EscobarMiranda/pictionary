@@ -5,5 +5,6 @@ export interface Task {
     definition?: string;
     sentence?: string;
     image?: string;
+    module?: string;
   }
   

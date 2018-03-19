@@ -4,6 +4,10 @@
     <form (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="input-field">
+          <input type="text" placeholder="Agregar módulo" [(ngModel)]="task.module" name="module">
+          <label>Módulo</label>
+        </div>
+        <div class="input-field">
           <input type="text" placeholder="Agregar palabra" [(ngModel)]="task.title" name="title">
           <label>Palabra</label>
         </div>

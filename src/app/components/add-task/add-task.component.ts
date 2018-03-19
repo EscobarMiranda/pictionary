@@ -15,7 +15,8 @@ export class AddTaskComponent implements OnInit {
    transcription: '',
    definition: '',
    sentence: '',
-   image: ''
+   image: '',
+   module: ''
   };
   constructor(private taskService: TaskService) { }
 
@@ -23,13 +24,14 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.task.title != '' && this.task.transcription != '' && this.task.definition != '' && this.task.sentence != '' && this.task.image != '') {
+    if(this.task.title != '' && this.task.transcription != '' && this.task.definition != '' && this.task.sentence != '' && this.task.module != '') {
       this.taskService.addTask(this.task);
       this.task.title = '';
       this.task.transcription = '';
       this.task.definition = '';
       this.task.sentence = '';
       this.task.image = '';
+      this.task.module = '';
     }
   }
 

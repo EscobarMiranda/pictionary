@@ -1,15 +1,20 @@
 <div *ngIf="tasks?.length > 0;else noTasks">
-  <button class="btn green btn-large" (click)="generatePDF()">Generar PDF</button>
-  <ul *ngFor="let task of tasks" class="collection">
-    <li class="collection-item" (dblclick)="deleteTask($event, task)">
-      <strong>{{ task.title }}</strong> : {{ task.transcription }} 
-      <a href="#" class="secondary-content">
+  <button class="btn green btn-large" (click)="generatePDF()">Generar PDF <i [hidden]="!showSpinner" class="fa fa-spinner fa-pulse fa-fw"></i></button>
+  <ul *ngFor="let task of tasks | groupBy" class="collection">
+    <li id="{{ task.id }}" class="collection-item" (dblclick)="editTask($event, task)">
+      {{ task.module }} - <strong>{{ task.title }}</strong> : {{ task.transcription }} 
+      <a href="#{{ task.id }}" class="secondary-content">
         <i (click)="deleteTask($event, task)" class="fa fa-trash"></i>
         <i (click)="editTask($event, task)" class="fa fa-pencil"></i>
       </a>
       <div *ngIf="editState && taskToEdit.id === task.id">
         <form (ngSubmit)="updateTask(task)">
           <div class="row">
+            <div class="input-field">
+              <input 
+                type="text" name="module"
+                placeholder="Editar módulo" [(ngModel)]="task.module">
+            </div>
             <div class="input-field">
               <input 
                 type="text" name="title"
@@ -39,7 +44,8 @@
                     <div class="file-path-wrapper">
                       <input class="file-path validate" type="text">
                     </div>
-                    <img src="{{taskToEdit.image}}" />
+                    <img class="image-max-width" [hidden]="newImage" src="{{task.image}}" />
+                    <img class="image-max-width" [hidden]="!newImage" src="{{newImage}}" />
                 </div>
             </div>
             <input type="submit" class="btn" value="Actualizar palabra">
