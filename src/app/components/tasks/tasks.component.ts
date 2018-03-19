@@ -154,7 +154,7 @@ export class TasksComponent implements OnInit {
         { text: 'Sentence', style: 'title2' },
         { text: task.sentence, style: 'sentence' },
         { text: 'Image', style: 'title2' },
-        { image: task.image, style: 'image', width: 250 }
+        { image: task.image, style: 'image', width: 200 }
       );
 
       if (this.tasks.length > count) {
